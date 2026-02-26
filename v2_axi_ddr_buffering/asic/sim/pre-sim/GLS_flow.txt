@@ -22,7 +22,9 @@ GLS를 돌리기 위해서는 RTL 시뮬레이션 때와 달리 하나가 더 �
 
 Cadence Xcelium(xrun), Synopsys VCS 등 사용 중인 시뮬레이터를 이용하여 위 파일들을 한 번에 컴파일 또는 run_prelayout.tcl 파일 생성 후 컴파일
 
-예시 (Xcelium): xrun tb_axi_writer_gls.v outputs/AXI_writer_netlist.v /경로/.../slow_vdd1v0_basicCells.v +access+rwc
+예시 (Xcelium): 
+xrun tb_axi_writer_gls.v outputs/AXI_writer_netlist.v /경로/.../slow_vdd1v0_basicCells.v +access+rwc
+xrun -f run_prelayout.tcl -access +rwc -gui
 
 파형 분석 (The Moment of Truth):
 
