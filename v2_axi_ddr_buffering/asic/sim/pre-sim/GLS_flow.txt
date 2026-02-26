@@ -1,19 +1,26 @@
+GLS ( Gate Level pre-layout Simulation) :
+합성(Synthesis)이 끝난 후 생성된 gate-level netlist를 기반으로, 정확한 논리 기능 및 타이밍 동작을 검증하는 시뮬레이션.
+
+
 GLS 실행 흐름도 (The Flow)
-GLS를 돌리기 위해서는 RTL 시뮬레이션 때와 달리 결정적인 준비물 하나가 더 필요합니다.
+GLS를 돌리기 위해서는 RTL 시뮬레이션 때와 달리 하나가 더 필요.
 
 필수 파일 4가지 확보:
 
-테스트벤치: tb_axi_writer_gls.v
+* 테스트벤치: tb_axi_writer_gls.v
 
-넷리스트 도면: Genus가 만든 outputs/AXI_writer_netlist.v
+* 넷리스트 도면: Genus가 만든 outputs/AXI_writer_netlist.v
 
-딜레이 타이밍 맵: Genus가 만든 outputs/AXI_writer_sdf.sdf
+* 딜레이 타이밍 맵: Genus가 만든 outputs/AXI_writer_sdf.sdf
 
-[가장 중요] 라이브러리 시뮬레이션 모델: 파운드리 라이브러리 폴더 안에 있는 slow_vdd1v0_basicCells.v (또는 .v 확장자를 가진 스탠다드 셀 행동 모델 파일). 넷리스트 안에 있는 AND2X1 같은 블록이 소프트웨어적으로 어떻게 동작하는지 시뮬레이터에게 알려주는 사전입니다.
+* [가장 중요] 라이브러리 시뮬레이션 모델: 파운드리 라이브러리 폴더 안에 있는 slow_vdd1v0_basicCells.v (또는 .v 확장자를 가진 스탠다드 셀 행동 모델 파일). 
+넷리스트 안에 있는 AND2X1 같은 블록이 소프트웨어적으로 어떻게 동작하는지 시뮬레이터에게 알려주는 사전 역할.
+합성 netlist에는 셀 인스턴스 이름만 있음 (AND2_X1 U1 (...);)
+시뮬레이터는 이 셀들이 어떤 신호를 처리하는지 모르기 때문에 cell의 Verilog 모델을 참조해야 함. SDF에 delay가 있어도 셀 구조를 알아야 delay를 적용할 수 있음.
 
 컴파일 및 시뮬레이션 실행:
 
-Cadence Xcelium(xrun), Synopsys VCS 등 사용 중인 시뮬레이터를 이용하여 위 파일들을 한 번에 컴파일합니다.
+Cadence Xcelium(xrun), Synopsys VCS 등 사용 중인 시뮬레이터를 이용하여 위 파일들을 한 번에 컴파일.
 
 예시 (Xcelium): xrun tb_axi_writer_gls.v outputs/AXI_writer_netlist.v /경로/.../slow_vdd1v0_basicCells.v +access+rwc
 
