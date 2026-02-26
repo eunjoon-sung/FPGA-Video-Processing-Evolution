@@ -1,5 +1,5 @@
 `timescale 1ns / 1ps
-// This module is for ASIC. In Vivado, I used Asynchronous FIFO IP.
+// This module is for Cadence tool (ASIC). In Vivado, I've used Asynchronous FIFO IP.
 
 module async_fifo #(
     parameter DATA_WIDTH = 64,
