@@ -122,6 +122,18 @@ timeDesign -postRoute -hold
 # 12. Post-Route 홀드 타임 최적화 (Hold Fixing)
 # ==========================================================
 # OCV 모드에서 Hold 위반을 잡기 위해 버퍼를 추가로 삽입
-# optDesign -postRoute -hold
-# timeDesign -postRoute -hold
 
+optDesign -postRoute -hold
+timeDesign -postRoute -hold
+
+
+# 2. 만약 위 명령어가 또 안 된다면, 툴이 허용하는 방식으로 강제 업데이트
+set_interactive_constraint_modes [all_constraint_modes]
+set_clock_uncertainty -hold 0.1 [get_clocks *]
+set_interactive_constraint_modes {}
+
+# 툴에게 수단과 방법을 가리지 말고(Effort High) 홀드를 잡으라고 지시
+setOptMode -effort high -fixHoldAllowOverlap true
+
+# 정석적인 Post-Route Hold 최적화 실행
+optDesign -postRoute -hold
