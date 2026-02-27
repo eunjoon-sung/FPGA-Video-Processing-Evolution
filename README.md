@@ -5,7 +5,7 @@ This repository documents the evolution of a real-time hardware video processing
 
 ---
 
-## 1. Phase 1: BRAM-Based Streaming Architecture (Folder: `v1_bram_streaming`)
+## 1. [Phase 1] BRAM-Based Streaming Architecture (Folder: `v1_bram_streaming`)
 
 **Overview & Implementation:**
 * **Capture & Control:** Custom RTL implementation of the I2C (SCCB) protocol for camera configuration. Designed a Data Capturer to extract valid pixels strictly synchronized with VSYNC/HREF signals.
@@ -26,7 +26,7 @@ This repository documents the evolution of a real-time hardware video processing
 
 ---
 
-## 2. Phase 2: AXI4-Stream & DDR3 Frame Buffering Architecture (Folder: `v2_axi_ddr_buffering`)
+## 2. [Phase 2] AXI4-Stream & DDR3 Frame Buffering Architecture (Folder: `v2_axi_ddr_buffering`)
 
 ### Module Overview
 This phase upgrades the video processing pipeline by integrating external DDR3 memory via the AMBA AXI4 interface. The architecture addresses the constraints of the previous BRAM-based streaming model by isolating the Camera Capture domain (Write) from the Display domain (Read) using asynchronous FIFOs and full-frame buffering.
