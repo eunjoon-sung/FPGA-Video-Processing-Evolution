@@ -44,3 +44,43 @@ addRing -nets {VDD VSS} \
         -width 2.0 \
         -spacing 1.0 \
         -offset 2.0
+# 화면 줌 피트
+fit
+
+# ==========================================================
+# 5. 내부 전원망 설계 (Add Stripe)
+# ==========================================================
+addStripe -nets {VDD VSS} \
+          -layer Metal5 \
+          -direction vertical \
+          -width 1.0 \
+          -spacing 0.5 \
+          -set_to_set_distance 20.0 \
+          -start_from left
+# 화면 줌 피트
+fit
+
+# ==========================================================
+# 6. 스탠다드 셀 전원 레일 및 Via 연결 (SRoute)
+# ==========================================================
+sroute -connect { corePin floatingStripe } \
+       -layerChangeRange { Metal1 Metal6 } \
+       -blockPinTarget { nearestTarget } \
+       -corePinTarget { firstAfterRowEnd } \
+       -allowJogging 1 \
+       -crossoverViaLayerRange { Metal1 Metal6 } \
+       -nets { VDD VSS } \
+       -allowLayerChange 1 \
+       -targetViaLayerRange { Metal1 Metal6 }
+# ==========================================================
+# 7. 부품 배치 (Placement)
+# ==========================================================
+# setPlaceMode -timingDriven true -congEffort high << 이 명령어 Error 남
+
+# 스캔 체인 연결 검사를 무시하라고 툴에 지시
+setPlaceMode -place_global_ignore_scan true
+
+# 다시 배치 실행
+placeDesign
+
+
