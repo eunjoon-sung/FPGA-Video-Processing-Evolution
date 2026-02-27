@@ -22,17 +22,14 @@ globalNetConnect VSS -type pgpin -pin VSS -instanceBasename * -hierarchicalInsta
 # ==========================================================
 # 3. Pin Editor (자동 정렬 배치)
 # ==========================================================
-# 기존에 엉킨 핀 배치를 싹 다 초기화.
-editPin -pin * -unplace
+# 1. [Left] 입력 포트 배치 (가로 방향인 Metal 2 사용)
+editPin -side Left -layer 2 -pin {pclk clk_100Mhz rst mixed_data* pixel_valid frame_done FRAME_BASE_ADDR*} -spreadType center -spacing 2.0
 
-# [Left] 입력 포트 배치 (클럭, 리셋, 카메라 센서 데이터)
-editPin -side Left -pin {pclk clk_100Mhz rst mixed_data* pixel_valid frame_done FRAME_BASE_ADDR*} -spreadType center -spacing 2.0
+# 2. [Right] AXI 출력 포트 배치 (가로 방향인 Metal 2 사용)
+editPin -side Right -layer 2 -pin {AWVALID AWADDR* AWLEN* AWSIZE* AWBURST* AWCACHE* AWPROT* WVALID WDATA* WSTRB* WLAST BREADY} -spreadType center -spacing 2.0
 
-# [Right] AXI 출력 포트 배치 (주소 및 데이터 내보내기)
-editPin -side Right -pin {AWVALID AWADDR* AWLEN* AWSIZE* AWBURST* AWCACHE* AWPROT* WVALID WDATA* WSTRB* WLAST BREADY} -spreadType center -spacing 2.0
-
-# [Top] AXI 응답 포트 및 상태 디버깅 핀 배치
-editPin -side Top -pin {AWREADY WREADY BVALID BRESP* o_prog_full state* ADDR_OFFSET*} -spreadType center -spacing 2.0
+# 3. [Top] AXI 응답 포트 및 상태 디버깅 핀 배치 (세로 방향인 Metal 3 사용)
+editPin -side Top -layer 3 -pin {AWREADY WREADY BVALID BRESP* o_prog_full state* ADDR_OFFSET*} -spreadType center -spacing 2.0
 
 # 화면 줌 피트
 fit
