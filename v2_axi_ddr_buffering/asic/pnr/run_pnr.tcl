@@ -137,3 +137,23 @@ setOptMode -effort high -fixHoldAllowOverlap true
 
 # 정석적인 Post-Route Hold 최적화 실행
 optDesign -postRoute -hold
+
+# ==========================================================
+# 13. Filler insert
+# ==========================================================
+# 1. 라이브러리에 있는 Filler Cell들을 빈 공간에 채워넣습니다.
+# (라이브러리에 따라 FILL1, FILL2, FILLER 등으로 이름이 다를 수 있으니 확인 필요)
+
+addFiller -cell {FILL1 FILL2 FILL4 FILL8 FILL16 FILL32 FILL64} -prefix FILL
+
+# ==========================================================
+# 14. Verify (DRC / LVS)
+# ==========================================================
+# 1. DRC (Design Rule Check) - 선 간격, 두께 등 물리적 규칙 검사
+verify_drc
+
+# 2. Connectivity (LVS) - 회로도와 실제 배선이 일치하는지, 끊어진 곳은 없는지 검사
+verify_connectivity -type all
+
+# 3. Geometry - 부품이 겹치거나 경계를 벗어난 곳이 없는지 확인
+verify_geometry
