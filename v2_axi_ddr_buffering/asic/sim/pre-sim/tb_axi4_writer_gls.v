@@ -55,10 +55,7 @@ module tb_axi4_writer_gls;
     // 2. DUT (Device Under Test) 인스턴스화
     // 합성된 넷리스트 모듈을 연결합니다.
     // ==========================================
-    AXI4_writer #(
-        .AXI_ADDR_WIDTH(AXI_ADDR_WIDTH),
-        .AXI_DATA_WIDTH(AXI_DATA_WIDTH)
-    ) uut (
+    AXI4_writer uut (
         .pclk(pclk),
         .clk_100Mhz(clk_100Mhz),
         .rst(rst),
