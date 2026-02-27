@@ -78,12 +78,7 @@ sroute -connect { corePin floatingStripe } \
 # ==========================================================
 # 7. 부품 배치 (Placement)
 # ==========================================================
-# setPlaceMode -timingDriven true -congEffort high << 이 명령어 Error 남
-
-# 스캔 체인 연결 검사를 무시하라고 툴에 지시
-setPlaceMode -place_global_ignore_scan true
-
-# 다시 배치 실행
+setPlaceMode -timingDriven true -reorderScan false
 placeDesign
 
 
