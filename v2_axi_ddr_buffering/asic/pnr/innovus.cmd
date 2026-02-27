@@ -20,18 +20,21 @@ globalNetConnect VDD -type pgpin -pin VDD -instanceBasename * -hierarchicalInsta
 globalNetConnect VSS -type pgpin -pin VSS -instanceBasename * -hierarchicalInstance {}
 
 # ==========================================================
-# 3. Pin Editor (자동 정렬 배치)
+# 3. Pin Editor (자동 정렬 배치 - 간격 조정 및 배치 모드 적용)
 # ==========================================================
-# 1. [Left] 입력 포트 배치 (가로 방향인 Metal 2 사용)
+# 툴 권장사항: 핀 배치를 한꺼번에 처리하여 속도와 정확도를 높임
+setPinAssignMode -pinEditInBatch true
+
+# [Left] (핀 개수가 적으므로 간격 2.0 유지 가능)
 editPin -side Left -layer 2 -pin {pclk clk_100Mhz rst mixed_data* pixel_valid frame_done FRAME_BASE_ADDR*} -spreadType center -spacing 2.0
 
-# 2. [Right] AXI 출력 포트 배치 (가로 방향인 Metal 2 사용)
-editPin -side Right -layer 2 -pin {AWVALID AWADDR* AWLEN* AWSIZE* AWBURST* AWCACHE* AWPROT* WVALID WDATA* WSTRB* WLAST BREADY} -spreadType center -spacing 2.0
+# [Right] (핀이 128개로 너무 많으므로 간격 1.5로 축소)
+editPin -side Right -layer 2 -pin {AWVALID AWADDR* AWLEN* AWSIZE* AWBURST* AWCACHE* AWPROT* WVALID WDATA* WSTRB* WLAST BREADY} -spreadType center -spacing 1.5
 
-# 3. [Top] AXI 응답 포트 및 상태 디버깅 핀 배치 (세로 방향인 Metal 3 사용)
+# [Top]
 editPin -side Top -layer 3 -pin {AWREADY WREADY BVALID BRESP* o_prog_full state* ADDR_OFFSET*} -spreadType center -spacing 2.0
 
-# 화면 줌 피트
+setPinAssignMode -pinEditInBatch false
 fit
 
 # ==========================================================
