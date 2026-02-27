@@ -81,4 +81,19 @@ sroute -connect { corePin floatingStripe } \
 setPlaceMode -timingDriven true -reorderScan false
 placeDesign
 
+# ==========================================================
+# 8. Pre-CTS 타이밍 분석 (Setup Check)
+# ==========================================================
+# 가상 배선을 기반으로 타이밍 리포트 생성
+timeDesign -preCTS -idealClock -pathReports -drvReports -slackReports -numPaths 50 -outDir reports/preCTS
+
+# ==========================================================
+# 9. 클럭 트리 합성 (CTS) 실행
+# ==========================================================
+# 클럭 트리 사양 자동 생성 및 합성
+create_ccopt_clock_tree_spec
+ccopt_design
+
+
+
 
