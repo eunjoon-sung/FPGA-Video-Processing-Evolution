@@ -41,24 +41,21 @@ This phase upgrades the video processing pipeline by integrating external DDR3 m
 
 The transition to a decoupled memory architecture introduced complex synchronization and data integrity challenges. Below is the engineering log detailing the root cause analysis of critical artifacts.
 
-### Issue 1: Image Rolling, Scaling (1/4x), and Ghosting Artifacts
+### Issue 1: Image Scaling (1/4x), Rolling, and Ghosting Artifacts
 
 * **Symptom:** The output display suffered from severe distortion. The screen exhibited continuous vertical rolling, and the image appeared scaled down to 1/4 of the monitor with horizontal/vertical folding (Ghosting), where the right side of the frame wrapped around to overlay on subsequent scanlines.
 
 * **Hypothesis 1 (Asynchronous Domain Collision):** Suspected that the continuous screen rolling was caused by forcing synchronization between two independent clock domains. Initially, the Writer's address reset was rigidly tied to the HDMI VTG's `vsync`. This caused the Writer to stall and wait for the monitor, while the Camera kept streaming, inevitably overflowing the FIFO.
-  * **Action:** Completely decoupled the Camera's `frame_done` signal from the HDMI's `vsync`. Implemented an independent Triple Buffering routing logic where the Writer operates freely and avoids the Reader's current memory space.
-  * **Result:** The vertical screen rolling was completely resolved, confirming the asynchronous domain conflict. However, the 1/4x scaling and ghosting artifacts persisted.
+  * **Action:** Completely decoupled the Camera's `frame_done` signal from the HDMI's `vsync`. Implemented an independent Triple Buffering routing logic where the Writer operates freely and avoids the Reader's current memory space. Additionally, fine-tuned the Reader FIFO's reset timing to exactly match the HDMI Back Porch (`v_count == 523`).
+  * **Result:** The vertical screen rolling was completely resolved. However, the 1/4x scaling and ghosting artifacts persisted.
 
-* **Hypothesis 2 (AXI Bandwidth & Line Wrapping):** Suspected that the remaining ghosting was due to pixel drops (FIFO overflow during AXI interconnect stalls) or incorrect memory address "line breaks" (Stride mismatch). 
-  * **Action:** Drastically increased the Writer FIFO depth (2048 -> 8192) to enhance buffering endurance. Manipulated the AXI Burst Length (`AWLEN`): increased from 64 to 256 for maximum throughput, then precisely tuned to 80 (80 bursts * 8 bytes = 640 bytes) to exactly match one physical line of the 320x240 resolution, forcing a clean address jump.
-  * **Result:** The folding boundary shifted horizontally on the screen, proving that data was intact (no drops) but the underlying memory mapping was fundamentally misaligned. The ghosting persisted.
-
-* **Hypothesis 3 (Read Synchronization & Back Porch Timing):** Suspected that the Reader might be fetching data prematurely before the monitor was actively requesting it, causing offset shifts.
-  * **Action:** Fine-tuned the Reader FIFO's reset timing to exactly match the HDMI Back Porch (`v_count == 523`) to prevent false empty-reads.
-  * **Result:** The visual offset shifted, but the ghosting and folding artifacts still remained.
+* **Hypothesis 2 (AXI Burst Alignment & Stride Mismatch):** Suspected that the remaining ghosting boundary was related to memory address "line breaks" and AXI transaction sizes. 
+  * **Action:** Manipulated the AXI Burst Length (`AWLEN`) from 64 down to 16. 
+  * **Result (The Shifting Boundary):** A 64-bit AXI bus transfers 8 Bytes per beat. At `AWLEN` = 64, one burst equals 512 Bytes, which does not evenly divide a 640-Byte video line (320px * 2B). This caused bursts to straddle across multiple lines. However, at `AWLEN` = 16, one burst equals exactly 128 Bytes. Since 640 is perfectly divisible by 128 (exactly 5 bursts per line), the burst boundary perfectly aligned with the video line boundary. 
+  * **Conclusion:** Changing `AWLEN` to 16 caused the visual folding boundary to shift horizontally. This proved that the AXI memory mapping and burst alignments were responding correctly, but the underlying total amount of data being pushed per line was fundamentally doubled, leading the investigation to the RTL logic.
 
 * **Fault Isolation (Color Bar Test):** To strictly isolate the fault from external camera noise or AXI logic errors, bypassed the camera input and injected an internal static Color Bar test pattern. 
-  * **Result:** The output rendered perfectly straight vertical bands, definitively proving that the AXI bandwidth, the 80-burst configuration, and the downscaling logic were completely flawless. The issue was now isolated strictly to the camera data parsing module.
+  * **Result:** The output rendered perfectly straight vertical bands, definitively proving that the AXI bandwidth, the 16-burst configuration, and the downscaling logic were completely flawless. The issue was now isolated strictly to the camera data parsing module.
 
 * **Verification (Vivado ILA):** Bypassed the AXI interconnect variables and probed the `m_axi_w_wdata` directly at the hardware level.
   
