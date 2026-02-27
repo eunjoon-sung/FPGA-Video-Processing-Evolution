@@ -94,6 +94,18 @@ timeDesign -preCTS -idealClock -pathReports -drvReports -slackReports -numPaths 
 create_ccopt_clock_tree_spec
 ccopt_design
 
+# ==========================================================
+# 10. Post-CTS 타이밍 분석 (Skew 반영)
+# ==========================================================
+timeDesign -postCTS -pathReports -drvReports -slackReports -numPaths 50 -outDir reports/postCTS
 
+# ==========================================================
+# 11. 최종 신호선 배선 (Route Design)
+# ==========================================================
+# 가상의 선을 지우고 실제 NanoRoute 엔진으로 물리적 배선 실행
+routeDesign -globalDetail
 
+# 배선 후 최종 타이밍 분석 (Setup & Hold)
+timeDesign -postRoute
+timeDesign -postRoute -hold
 
