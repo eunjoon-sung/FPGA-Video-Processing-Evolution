@@ -105,7 +105,22 @@ timeDesign -postCTS -pathReports -drvReports -slackReports -numPaths 50 -outDir 
 # 가상의 선을 지우고 실제 NanoRoute 엔진으로 물리적 배선 실행
 routeDesign -globalDetail
 
+# 1. 칩 내부의 공정 오차(OCV)를 계산에 반영하도록 설정
+setAnalysisMode -analysisType onChipVariation
+
+# 2. 클럭이 갈라졌다가 다시 만나는 지점의 중복 오차(Pessimism) 제거
+setAnalysisMode -cppr both
+
 # 배선 후 최종 타이밍 분석 (Setup & Hold)
 timeDesign -postRoute
+timeDesign -postRoute -hold
+
+# Hold time - slack 뜸
+
+# ==========================================================
+# 12. Post-Route 홀드 타임 최적화 (Hold Fixing)
+# ==========================================================
+# OCV 모드에서 Hold 위반을 잡기 위해 버퍼를 추가로 삽입
+optDesign -postRoute -hold
 timeDesign -postRoute -hold
 
