@@ -49,7 +49,7 @@ module AXI4_writer(
     parameter AXI_ADDR_WIDTH = 32;
     parameter AXI_DATA_WIDTH = 64;
 
-    assign AWLEN   = 8'd15;     // 64 burst
+    assign AWLEN   = 8'd15;     // 64 burst -> 16 burst
     assign AWSIZE  = 3'b011;   // 8 byte (64 bit)
     assign AWBURST = 2'b01;    // INCR (주소 증가 모드)
     assign AWCACHE = 4'b0010; // DDR 컨트롤러 활성화 
@@ -200,4 +200,5 @@ module AXI4_writer(
         .rd_rst_busy()
     );
  
+
 endmodule
