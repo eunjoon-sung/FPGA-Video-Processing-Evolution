@@ -75,7 +75,7 @@ module tb_axi4_writer_pls;
     );
 
     // ==========================================
-    // 3. SDF Annotation (GLS의 핵심)
+    // 3. SDF Annotation
     // ==========================================
 	$sdf_annotate(
     		"../../pnr/outputs/AXI4_writer.sdf",  // Innovus에서 방금 뽑은 SDF 파일 경로
