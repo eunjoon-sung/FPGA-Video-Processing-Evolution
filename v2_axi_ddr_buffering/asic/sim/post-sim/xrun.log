@@ -1,0 +1,411 @@
+xrun(64): 22.03-s009: (c) Copyright 1995-2022 Cadence Design Systems, Inc.
+TOOL:	xrun(64)	22.03-s009: Started on Mar 03, 2026 at 03:29:00 KST
+xrun
+	-f run_postlayout.tcl
+		/home/s_2025_h007/PROJECT/HDMI_DDR/pnr/outputs/AXI4_writer_final.v
+		/home/s_2025_h007/PROJECT/HDMI_DDR/sim/post-sim/tb_axi4_writer_pls.v
+		-v /home/s_2025_h007/PROJECT/HDMI_DDR/edu_lib/verilog/slow_vdd1v0_basicCells.v
+	-access +rwc
+	-gui
+	-timescale 1ns/1ps
+file: /home/s_2025_h007/PROJECT/HDMI_DDR/sim/post-sim/tb_axi4_writer_pls.v
+	module worklib.tb_axi4_writer_pls:v
+		errors: 0, warnings: 0
+file: /home/s_2025_h007/PROJECT/HDMI_DDR/edu_lib/verilog/slow_vdd1v0_basicCells.v
+	module slow_vdd1v0_basicCells.ADDFX1:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.AND2X1:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.AND2X2:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.AND2X4:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.AND2X6:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.AND2X8:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.AND2XL:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.AO21X1:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.AOI211XL:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.AOI21X1:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.AOI21XL:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.AOI221X1:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.AOI22X1:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.AOI22X2:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.AOI22XL:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.AOI2BB1X1:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.AOI2BB1X2:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.AOI2BB1XL:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.AOI31X1:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.BUFX12:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.BUFX2:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.BUFX3:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.BUFX4:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.BUFX6:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.BUFX8:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.CLKBUFX12:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.CLKBUFX2:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.CLKBUFX3:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.CLKBUFX4:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.CLKBUFX6:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.CLKBUFX8:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.CLKINVX1:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.CLKINVX2:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.CLKINVX20:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.CLKINVX4:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.CLKINVX6:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.CLKINVX8:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.CLKMX2X2:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.CLKMX2X4:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.CLKMX2X6:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.DFFHQX1:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.DFFQX2:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.DFFQXL:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.DFFRHQX1:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.DFFRHQX4:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.DFFRHQX8:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.DFFRX1:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.DFFRX2:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.DFFX1:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.DLY1X1:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.DLY1X4:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.DLY2X1:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.DLY2X4:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.DLY3X1:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.DLY3X4:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.DLY4X1:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.DLY4X4:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.INVX1:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.INVX2:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.INVX3:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.INVX4:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.INVX6:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.INVXL:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.MX2X1:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.MX2X2:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.MX2XL:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.MX3XL:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.MXI2XL:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.NAND2BX1:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.NAND2BX2:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.NAND2BXL:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.NAND2X1:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.NAND2X2:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.NAND2XL:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.NAND3BX1:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.NAND3BX2:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.NAND3BXL:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.NAND3XL:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.NAND4X1:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.NAND4XL:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.NOR2BX1:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.NOR2X1:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.NOR2X2:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.NOR2XL:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.NOR3X1:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.NOR4BX1:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.OA21X1:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.OA21X2:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.OA22X1:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.OAI211X1:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.OAI21X1:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.OAI21X2:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.OAI21XL:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.OAI222X1:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.OAI22X1:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.OAI22X2:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.OAI22XL:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.OAI2BB1X1:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.OAI31X1:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.OAI32X1:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.OAI33X1:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.OR2X1:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.OR2X2:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.OR2X4:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.OR2X6:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.OR2XL:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.OR3X1:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.XNOR2X1:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.XNOR2X2:v
+		errors: 0, warnings: 0
+	module slow_vdd1v0_basicCells.XOR2XL:v
+		errors: 0, warnings: 0
+	primitive slow_vdd1v0_basicCells.altos_dff_err:v
+		errors: 0, warnings: 0
+	primitive slow_vdd1v0_basicCells.altos_dff:v
+		errors: 0, warnings: 0
+	primitive slow_vdd1v0_basicCells.altos_dff_r_err:v
+		errors: 0, warnings: 0
+	primitive slow_vdd1v0_basicCells.altos_dff_r:v
+		errors: 0, warnings: 0
+		Caching library 'slow_vdd1v0_basicCells' ....... Done
+		Caching library 'worklib' ....... Done
+	Elaborating the design hierarchy:
+	Top level design units:
+		tb_axi4_writer_pls
+	Reading SDF file from location "../../pnr/outputs/AXI4_writer.sdf"
+	Writing compiled SDF file to "AXI4_writer.sdf.X".
+	Annotating SDF timing data:
+		Compiled SDF file:     AXI4_writer.sdf.X
+		Log file:              sdf_axi4_writer_postsim.log
+		Backannotation scope:  tb_axi4_writer_pls.uut
+		Configuration file:    
+		MTM control:           MAXIMUM
+		Scale factors:         
+		Scale type:            
+xmelab: *W,SDFNET: Unable to annotate to non-existent timing check (RECREM (posedge RN) (posedge CK) (-0.066) (0.18)) of instance tb_axi4_writer_pls.uut.\u_fifo_writer_rd_ptr_gray_sync1_reg[0]  of module DFFRHQX1 </home/s_2025_h007/PROJECT/HDMI_DDR/pnr/outputs/AXI4_writer.sdf, line 153536>.
+xmelab: *W,SDFNET: Unable to annotate to non-existent timing check (RECREM (posedge RN) (posedge CK) (-0.039) (0.154)) of instance tb_axi4_writer_pls.uut.\u_fifo_writer_wr_ptr_gray_sync1_reg[6]  of module DFFRHQX1 </home/s_2025_h007/PROJECT/HDMI_DDR/pnr/outputs/AXI4_writer.sdf, line 153555>.
+xmelab: *W,SDFNET: Unable to annotate to non-existent timing check (RECREM (posedge RN) (posedge CK) (-0.039) (0.154)) of instance tb_axi4_writer_pls.uut.\u_fifo_writer_wr_ptr_gray_sync1_reg[4]  of module DFFRHQX1 </home/s_2025_h007/PROJECT/HDMI_DDR/pnr/outputs/AXI4_writer.sdf, line 153574>.
+xmelab: *W,SDFNET: Unable to annotate to non-existent timing check (RECREM (posedge RN) (posedge CK) (-0.039) (0.154)) of instance tb_axi4_writer_pls.uut.\u_fifo_writer_wr_ptr_gray_sync1_reg[0]  of module DFFRHQX1 </home/s_2025_h007/PROJECT/HDMI_DDR/pnr/outputs/AXI4_writer.sdf, line 153593>.
+xmelab: *W,SDFNET: Unable to annotate to non-existent timing check (RECREM (posedge RN) (posedge CK) (-0.039) (0.154)) of instance tb_axi4_writer_pls.uut.\u_fifo_writer_wr_ptr_gray_sync1_reg[7]  of module DFFRHQX1 </home/s_2025_h007/PROJECT/HDMI_DDR/pnr/outputs/AXI4_writer.sdf, line 153612>.
+xmelab: *W,SDFNET: Unable to annotate to non-existent timing check (RECREM (posedge RN) (posedge CK) (-0.066) (0.18)) of instance tb_axi4_writer_pls.uut.\u_fifo_writer_rd_ptr_gray_sync1_reg[7]  of module DFFRHQX1 </home/s_2025_h007/PROJECT/HDMI_DDR/pnr/outputs/AXI4_writer.sdf, line 153631>.
+xmelab: *W,SDFNET: Unable to annotate to non-existent timing check (RECREM (posedge RN) (posedge CK) (-0.039) (0.154)) of instance tb_axi4_writer_pls.uut.\u_fifo_writer_wr_ptr_gray_sync1_reg[3]  of module DFFRHQX1 </home/s_2025_h007/PROJECT/HDMI_DDR/pnr/outputs/AXI4_writer.sdf, line 153650>.
+xmelab: *W,SDFNET: Unable to annotate to non-existent timing check (RECREM (posedge RN) (posedge CK) (-0.066) (0.18)) of instance tb_axi4_writer_pls.uut.\u_fifo_writer_rd_ptr_gray_sync1_reg[6]  of module DFFRHQX1 </home/s_2025_h007/PROJECT/HDMI_DDR/pnr/outputs/AXI4_writer.sdf, line 153669>.
+xmelab: *W,SDFNET: Unable to annotate to non-existent timing check (RECREM (posedge RN) (posedge CK) (-0.066) (0.18)) of instance tb_axi4_writer_pls.uut.\u_fifo_writer_rd_ptr_gray_sync1_reg[3]  of module DFFRHQX1 </home/s_2025_h007/PROJECT/HDMI_DDR/pnr/outputs/AXI4_writer.sdf, line 153688>.
+xmelab: *W,SDFNET: Unable to annotate to non-existent timing check (RECREM (posedge RN) (posedge CK) (-0.039) (0.154)) of instance tb_axi4_writer_pls.uut.\u_fifo_writer_wr_ptr_gray_sync1_reg[5]  of module DFFRHQX1 </home/s_2025_h007/PROJECT/HDMI_DDR/pnr/outputs/AXI4_writer.sdf, line 153707>.
+xmelab: *W,SDFNET: Unable to annotate to non-existent timing check (RECREM (posedge RN) (posedge CK) (-0.039) (0.154)) of instance tb_axi4_writer_pls.uut.\u_fifo_writer_wr_ptr_gray_sync1_reg[2]  of module DFFRHQX1 </home/s_2025_h007/PROJECT/HDMI_DDR/pnr/outputs/AXI4_writer.sdf, line 153726>.
+xmelab: *W,SDFNET: Unable to annotate to non-existent timing check (RECREM (posedge RN) (posedge CK) (-0.066) (0.18)) of instance tb_axi4_writer_pls.uut.\u_fifo_writer_rd_ptr_gray_sync1_reg[4]  of module DFFRHQX1 </home/s_2025_h007/PROJECT/HDMI_DDR/pnr/outputs/AXI4_writer.sdf, line 153745>.
+xmelab: *W,SDFNET: Unable to annotate to non-existent timing check (RECREM (posedge RN) (posedge CK) (-0.066) (0.18)) of instance tb_axi4_writer_pls.uut.\u_fifo_writer_rd_ptr_gray_sync1_reg[5]  of module DFFRHQX1 </home/s_2025_h007/PROJECT/HDMI_DDR/pnr/outputs/AXI4_writer.sdf, line 153764>.
+xmelab: *W,SDFNET: Unable to annotate to non-existent timing check (RECREM (posedge RN) (posedge CK) (-0.039) (0.154)) of instance tb_axi4_writer_pls.uut.\u_fifo_writer_wr_ptr_gray_sync1_reg[1]  of module DFFRHQX1 </home/s_2025_h007/PROJECT/HDMI_DDR/pnr/outputs/AXI4_writer.sdf, line 153783>.
+xmelab: *W,SDFNET: Unable to annotate to non-existent timing check (RECREM (posedge RN) (posedge CK) (-0.066) (0.18)) of instance tb_axi4_writer_pls.uut.\u_fifo_writer_rd_ptr_gray_sync1_reg[2]  of module DFFRHQX1 </home/s_2025_h007/PROJECT/HDMI_DDR/pnr/outputs/AXI4_writer.sdf, line 153802>.
+xmelab: *W,SDFNET: Unable to annotate to non-existent timing check (RECREM (posedge RN) (posedge CK) (-0.064) (0.178)) of instance tb_axi4_writer_pls.uut.\u_fifo_writer_rd_ptr_gray_sync1_reg[1]  of module DFFRHQX1 </home/s_2025_h007/PROJECT/HDMI_DDR/pnr/outputs/AXI4_writer.sdf, line 153821>.
+xmelab: *W,SDFNET: Unable to annotate to non-existent timing check (RECREM (posedge RN) (posedge CK) (-0.039) (0.154)) of instance tb_axi4_writer_pls.uut.\u_fifo_writer_rd_ptr_gray_reg[1]  of module DFFRHQX1 </home/s_2025_h007/PROJECT/HDMI_DDR/pnr/outputs/AXI4_writer.sdf, line 153840>.
+xmelab: *W,SDFNET: Unable to annotate to non-existent timing check (RECREM (posedge RN) (posedge CK) (-0.069) (0.183)) of instance tb_axi4_writer_pls.uut.\u_fifo_writer_wr_ptr_gray_reg[4]  of module DFFRHQX1 </home/s_2025_h007/PROJECT/HDMI_DDR/pnr/outputs/AXI4_writer.sdf, line 153859>.
+xmelab: *W,SDFNET: Unable to annotate to non-existent timing check (RECREM (posedge RN) (posedge CK) (-0.07) (0.183)) of instance tb_axi4_writer_pls.uut.\u_fifo_writer_wr_ptr_gray_reg[6]  of module DFFRHQX1 </home/s_2025_h007/PROJECT/HDMI_DDR/pnr/outputs/AXI4_writer.sdf, line 153878>.
+xmelab: *W,SDFNET: Unable to annotate to non-existent timing check (RECREM (posedge RN) (posedge CK) (-0.039) (0.154)) of instance tb_axi4_writer_pls.uut.\u_fifo_writer_rd_ptr_gray_reg[0]  of module DFFRHQX1 </home/s_2025_h007/PROJECT/HDMI_DDR/pnr/outputs/AXI4_writer.sdf, line 153897>.
+xmelab: *W,SDFNET: Unable to annotate to non-existent timing check (RECREM (posedge RN) (posedge CK) (-0.066) (0.18)) of instance tb_axi4_writer_pls.uut.\u_fifo_writer_wr_ptr_gray_reg[0]  of module DFFRHQX1 </home/s_2025_h007/PROJECT/HDMI_DDR/pnr/outputs/AXI4_writer.sdf, line 153916>.
+xmelab: *W,SDFNET: Unable to annotate to non-existent timing check (RECREM (posedge RN) (posedge CK) (-0.039) (0.154)) of instance tb_axi4_writer_pls.uut.\u_fifo_writer_rd_ptr_gray_reg[3]  of module DFFRHQX1 </home/s_2025_h007/PROJECT/HDMI_DDR/pnr/outputs/AXI4_writer.sdf, line 153935>.
+xmelab: *W,SDFNET: Unable to annotate to non-existent timing check (RECREM (posedge RN) (posedge CK) (-0.039) (0.154)) of instance tb_axi4_writer_pls.uut.\u_fifo_writer_rd_ptr_gray_reg[4]  of module DFFRHQX1 </home/s_2025_h007/PROJECT/HDMI_DDR/pnr/outputs/AXI4_writer.sdf, line 153954>.
+xmelab: *W,SDFNET: Unable to annotate to non-existent timing check (RECREM (posedge RN) (posedge CK) (-0.039) (0.154)) of instance tb_axi4_writer_pls.uut.\u_fifo_writer_rd_ptr_gray_reg[5]  of module DFFRHQX1 </home/s_2025_h007/PROJECT/HDMI_DDR/pnr/outputs/AXI4_writer.sdf, line 153973>.
+xmelab: *W,SDFNET: Unable to annotate to non-existent timing check (RECREM (posedge RN) (posedge CK) (-0.066) (0.18)) of instance tb_axi4_writer_pls.uut.\u_fifo_writer_wr_ptr_gray_reg[3]  of module DFFRHQX1 </home/s_2025_h007/PROJECT/HDMI_DDR/pnr/outputs/AXI4_writer.sdf, line 153992>.
+xmelab: *W,SDFNET: Unable to annotate to non-existent timing check (RECREM (posedge RN) (posedge CK) (-0.039) (0.154)) of instance tb_axi4_writer_pls.uut.\u_fifo_writer_rd_ptr_gray_reg[7]  of module DFFRHQX1 </home/s_2025_h007/PROJECT/HDMI_DDR/pnr/outputs/AXI4_writer.sdf, line 154011>.
+xmelab: *W,SDFNET: Unable to annotate to non-existent timing check (RECREM (posedge RN) (posedge CK) (-0.066) (0.18)) of instance tb_axi4_writer_pls.uut.\u_fifo_writer_wr_ptr_gray_reg[1]  of module DFFRHQX1 </home/s_2025_h007/PROJECT/HDMI_DDR/pnr/outputs/AXI4_writer.sdf, line 154030>.
+xmelab: *W,SDFNET: Unable to annotate to non-existent timing check (RECREM (posedge RN) (posedge CK) (-0.066) (0.18)) of instance tb_axi4_writer_pls.uut.\u_fifo_writer_wr_ptr_gray_reg[7]  of module DFFRHQX1 </home/s_2025_h007/PROJECT/HDMI_DDR/pnr/outputs/AXI4_writer.sdf, line 154049>.
+xmelab: *W,SDFNET: Unable to annotate to non-existent timing check (RECREM (posedge RN) (posedge CK) (-0.066) (0.18)) of instance tb_axi4_writer_pls.uut.\u_fifo_writer_wr_ptr_gray_reg[2]  of module DFFRHQX1 </home/s_2025_h007/PROJECT/HDMI_DDR/pnr/outputs/AXI4_writer.sdf, line 154068>.
+xmelab: *W,SDFNET: Unable to annotate to non-existent timing check (RECREM (posedge RN) (posedge CK) (-0.069) (0.183)) of instance tb_axi4_writer_pls.uut.\u_fifo_writer_wr_ptr_gray_reg[5]  of module DFFRHQX1 </home/s_2025_h007/PROJECT/HDMI_DDR/pnr/outputs/AXI4_writer.sdf, line 154087>.
+xmelab: *W,SDFNET: Unable to annotate to non-existent timing check (RECREM (posedge RN) (posedge CK) (-0.039) (0.154)) of instance tb_axi4_writer_pls.uut.\u_fifo_writer_rd_ptr_gray_reg[6]  of module DFFRHQX1 </home/s_2025_h007/PROJECT/HDMI_DDR/pnr/outputs/AXI4_writer.sdf, line 154106>.
+xmelab: *W,SDFNET: Unable to annotate to non-existent timing check (RECREM (posedge RN) (posedge CK) (-0.039) (0.154)) of instance tb_axi4_writer_pls.uut.\u_fifo_writer_rd_ptr_gray_reg[2]  of module DFFRHQX1 </home/s_2025_h007/PROJECT/HDMI_DDR/pnr/outputs/AXI4_writer.sdf, line 154125>.
+xmelab: *W,SDFNET: Unable to annotate to non-existent timing check (RECREM (posedge RN) (posedge CK) (-0.066) (0.18)) of instance tb_axi4_writer_pls.uut.\u_fifo_writer_rd_ptr_gray_sync1_reg[8]  of module DFFRHQX1 </home/s_2025_h007/PROJECT/HDMI_DDR/pnr/outputs/AXI4_writer.sdf, line 154280>.
+xmelab: *W,SDFNET: Unable to annotate to non-existent timing check (RECREM (posedge RN) (posedge CK) (-0.066) (0.18)) of instance tb_axi4_writer_pls.uut.\u_fifo_writer_rd_ptr_gray_sync2_reg[8]  of module DFFRHQX1 </home/s_2025_h007/PROJECT/HDMI_DDR/pnr/outputs/AXI4_writer.sdf, line 154299>.
+xmelab: *W,SDFNET: Unable to annotate to non-existent timing check (RECREM (posedge RN) (posedge CK) (-0.039) (0.154)) of instance tb_axi4_writer_pls.uut.\u_fifo_writer_wr_ptr_gray_sync1_reg[8]  of module DFFRHQX1 </home/s_2025_h007/PROJECT/HDMI_DDR/pnr/outputs/AXI4_writer.sdf, line 154318>.
+xmelab: *W,SDFNET: Unable to annotate to non-existent timing check (RECREM (posedge RN) (posedge CK) (-0.058) (0.144)) of instance tb_axi4_writer_pls.uut.\u_fifo_writer_rd_ptr_bin_reg[0]  of module DFFRHQX8 </home/s_2025_h007/PROJECT/HDMI_DDR/pnr/outputs/AXI4_writer.sdf, line 275226>.
+xmelab: *W,SDFNET: Unable to annotate to non-existent timing check (RECREM (posedge RN) (posedge CK) (-0.039) (0.154)) of instance tb_axi4_writer_pls.uut.\u_fifo_writer_rd_ptr_bin_reg[5]  of module DFFRHQX1 </home/s_2025_h007/PROJECT/HDMI_DDR/pnr/outputs/AXI4_writer.sdf, line 275245>.
+xmelab: *W,SDFNET: Unable to annotate to non-existent timing check (RECREM (posedge RN) (posedge CK) (-0.028) (0.147)) of instance tb_axi4_writer_pls.uut.\u_fifo_writer_rd_ptr_bin_reg[6]  of module DFFRX1 </home/s_2025_h007/PROJECT/HDMI_DDR/pnr/outputs/AXI4_writer.sdf, line 275266>.
+xmelab: *W,SDFNET: Unable to annotate to non-existent timing check (RECREM (posedge RN) (posedge CK) (-0.041) (0.149)) of instance tb_axi4_writer_pls.uut.\u_fifo_writer_rd_ptr_bin_reg[7]  of module DFFRHQX4 </home/s_2025_h007/PROJECT/HDMI_DDR/pnr/outputs/AXI4_writer.sdf, line 275285>.
+xmelab: *W,SDFNET: Unable to annotate to non-existent timing check (RECREM (posedge RN) (posedge CK) (-0.039) (0.154)) of instance tb_axi4_writer_pls.uut.\u_fifo_writer_rd_ptr_bin_reg[8]  of module DFFRHQX1 </home/s_2025_h007/PROJECT/HDMI_DDR/pnr/outputs/AXI4_writer.sdf, line 275304>.
+xmelab: *W,SDFNET: Unable to annotate to non-existent timing check (RECREM (posedge RN) (posedge CK) (-0.066) (0.18)) of instance tb_axi4_writer_pls.uut.\u_fifo_writer_rd_ptr_gray_sync2_reg[0]  of module DFFRHQX1 </home/s_2025_h007/PROJECT/HDMI_DDR/pnr/outputs/AXI4_writer.sdf, line 275323>.
+xmelab: *W,SDFNET: Unable to annotate to non-existent timing check (RECREM (posedge RN) (posedge CK) (-0.064) (0.178)) of instance tb_axi4_writer_pls.uut.\u_fifo_writer_rd_ptr_gray_sync2_reg[2]  of module DFFRHQX1 </home/s_2025_h007/PROJECT/HDMI_DDR/pnr/outputs/AXI4_writer.sdf, line 275342>.
+xmelab: *W,SDFNET: Unable to annotate to non-existent timing check (RECREM (posedge RN) (posedge CK) (-0.066) (0.18)) of instance tb_axi4_writer_pls.uut.\u_fifo_writer_rd_ptr_gray_sync2_reg[4]  of module DFFRHQX1 </home/s_2025_h007/PROJECT/HDMI_DDR/pnr/outputs/AXI4_writer.sdf, line 275361>.
+xmelab: *W,SDFNET: Unable to annotate to non-existent timing check (RECREM (posedge RN) (posedge CK) (-0.069) (0.183)) of instance tb_axi4_writer_pls.uut.\u_fifo_writer_rd_ptr_gray_sync2_reg[6]  of module DFFRHQX1 </home/s_2025_h007/PROJECT/HDMI_DDR/pnr/outputs/AXI4_writer.sdf, line 275380>.
+xmelab: *W,SDFNET: Unable to annotate to non-existent timing check (RECREM (posedge RN) (posedge CK) (-0.064) (0.177)) of instance tb_axi4_writer_pls.uut.\u_fifo_writer_wr_ptr_bin_reg[0]  of module DFFRHQX1 </home/s_2025_h007/PROJECT/HDMI_DDR/pnr/outputs/AXI4_writer.sdf, line 275399>.
+xmelab: *W,SDFNET: Unable to annotate to non-existent timing check (RECREM (posedge RN) (posedge CK) (-0.039) (0.154)) of instance tb_axi4_writer_pls.uut.\u_fifo_writer_wr_ptr_gray_sync2_reg[1]  of module DFFRHQX1 </home/s_2025_h007/PROJECT/HDMI_DDR/pnr/outputs/AXI4_writer.sdf, line 275418>.
+xmelab: *W,SDFNET: Unable to annotate to non-existent timing check (RECREM (posedge RN) (posedge CK) (-0.039) (0.154)) of instance tb_axi4_writer_pls.uut.\u_fifo_writer_wr_ptr_gray_sync2_reg[2]  of module DFFRHQX1 </home/s_2025_h007/PROJECT/HDMI_DDR/pnr/outputs/AXI4_writer.sdf, line 275437>.
+xmelab: *W,SDFNET: Unable to annotate to non-existent timing check (RECREM (posedge RN) (posedge CK) (-0.039) (0.154)) of instance tb_axi4_writer_pls.uut.\u_fifo_writer_wr_ptr_gray_sync2_reg[3]  of module DFFRHQX1 </home/s_2025_h007/PROJECT/HDMI_DDR/pnr/outputs/AXI4_writer.sdf, line 275456>.
+xmelab: *W,SDFNET: Unable to annotate to non-existent timing check (RECREM (posedge RN) (posedge CK) (-0.039) (0.154)) of instance tb_axi4_writer_pls.uut.\u_fifo_writer_wr_ptr_gray_sync2_reg[4]  of module DFFRHQX1 </home/s_2025_h007/PROJECT/HDMI_DDR/pnr/outputs/AXI4_writer.sdf, line 275475>.
+xmelab: *W,SDFNET: Unable to annotate to non-existent timing check (RECREM (posedge RN) (posedge CK) (-0.039) (0.154)) of instance tb_axi4_writer_pls.uut.\u_fifo_writer_wr_ptr_gray_sync2_reg[5]  of module DFFRHQX1 </home/s_2025_h007/PROJECT/HDMI_DDR/pnr/outputs/AXI4_writer.sdf, line 275494>.
+xmelab: *W,SDFNET: Unable to annotate to non-existent timing check (RECREM (posedge RN) (posedge CK) (-0.039) (0.154)) of instance tb_axi4_writer_pls.uut.\u_fifo_writer_wr_ptr_gray_sync2_reg[6]  of module DFFRHQX1 </home/s_2025_h007/PROJECT/HDMI_DDR/pnr/outputs/AXI4_writer.sdf, line 275513>.
+xmelab: *W,SDFNET: Unable to annotate to non-existent timing check (RECREM (posedge RN) (posedge CK) (-0.039) (0.154)) of instance tb_axi4_writer_pls.uut.\u_fifo_writer_wr_ptr_gray_sync2_reg[7]  of module DFFRHQX1 </home/s_2025_h007/PROJECT/HDMI_DDR/pnr/outputs/AXI4_writer.sdf, line 275532>.
+xmelab: *W,SDFNET: Unable to annotate to non-existent timing check (RECREM (posedge RN) (posedge CK) (-0.039) (0.154)) of instance tb_axi4_writer_pls.uut.\u_fifo_writer_wr_ptr_gray_sync2_reg[8]  of module DFFRHQX1 </home/s_2025_h007/PROJECT/HDMI_DDR/pnr/outputs/AXI4_writer.sdf, line 275551>.
+xmelab: *W,SDFNET: Unable to annotate to non-existent timing check (RECREM (posedge RN) (posedge CK) (-0.028) (0.144)) of instance tb_axi4_writer_pls.uut.\u_fifo_writer_rd_ptr_bin_reg[1]  of module DFFRX2 </home/s_2025_h007/PROJECT/HDMI_DDR/pnr/outputs/AXI4_writer.sdf, line 334176>.
+xmelab: *W,SDFNET: Unable to annotate to non-existent timing check (RECREM (posedge RN) (posedge CK) (-0.028) (0.147)) of instance tb_axi4_writer_pls.uut.\u_fifo_writer_rd_ptr_bin_reg[2]  of module DFFRX1 </home/s_2025_h007/PROJECT/HDMI_DDR/pnr/outputs/AXI4_writer.sdf, line 334197>.
+xmelab: *W,SDFNET: Unable to annotate to non-existent timing check (RECREM (posedge RN) (posedge CK) (-0.028) (0.144)) of instance tb_axi4_writer_pls.uut.\u_fifo_writer_rd_ptr_bin_reg[3]  of module DFFRX2 </home/s_2025_h007/PROJECT/HDMI_DDR/pnr/outputs/AXI4_writer.sdf, line 334218>.
+xmelab: *W,SDFNET: Unable to annotate to non-existent timing check (RECREM (posedge RN) (posedge CK) (-0.071) (0.184)) of instance tb_axi4_writer_pls.uut.\u_fifo_writer_wr_ptr_bin_reg[1]  of module DFFRHQX1 </home/s_2025_h007/PROJECT/HDMI_DDR/pnr/outputs/AXI4_writer.sdf, line 334237>.
+xmelab: *W,SDFNET: Unable to annotate to non-existent timing check (RECREM (posedge RN) (posedge CK) (-0.071) (0.184)) of instance tb_axi4_writer_pls.uut.\u_fifo_writer_wr_ptr_bin_reg[3]  of module DFFRHQX1 </home/s_2025_h007/PROJECT/HDMI_DDR/pnr/outputs/AXI4_writer.sdf, line 334256>.
+xmelab: *W,SDFNET: Unable to annotate to non-existent timing check (RECREM (posedge RN) (posedge CK) (-0.069) (0.183)) of instance tb_axi4_writer_pls.uut.\u_fifo_writer_wr_ptr_bin_reg[4]  of module DFFRHQX1 </home/s_2025_h007/PROJECT/HDMI_DDR/pnr/outputs/AXI4_writer.sdf, line 334275>.
+xmelab: *W,SDFNET: Unable to annotate to non-existent timing check (RECREM (posedge RN) (posedge CK) (-0.069) (0.183)) of instance tb_axi4_writer_pls.uut.\u_fifo_writer_wr_ptr_bin_reg[5]  of module DFFRHQX1 </home/s_2025_h007/PROJECT/HDMI_DDR/pnr/outputs/AXI4_writer.sdf, line 334294>.
+xmelab: *W,SDFNET: Unable to annotate to non-existent timing check (RECREM (posedge RN) (posedge CK) (-0.069) (0.183)) of instance tb_axi4_writer_pls.uut.\u_fifo_writer_wr_ptr_bin_reg[6]  of module DFFRHQX1 </home/s_2025_h007/PROJECT/HDMI_DDR/pnr/outputs/AXI4_writer.sdf, line 334313>.
+xmelab: *W,SDFNET: Unable to annotate to non-existent timing check (RECREM (posedge RN) (posedge CK) (-0.028) (0.147)) of instance tb_axi4_writer_pls.uut.\u_fifo_writer_wr_ptr_gray_sync2_reg[0]  of module DFFRX1 </home/s_2025_h007/PROJECT/HDMI_DDR/pnr/outputs/AXI4_writer.sdf, line 334334>.
+xmelab: *W,SDFNET: Unable to annotate to non-existent timing check (RECREM (posedge RN) (posedge CK) (-0.054) (0.171)) of instance tb_axi4_writer_pls.uut.\u_fifo_writer_rd_ptr_gray_sync2_reg[3]  of module DFFRX1 </home/s_2025_h007/PROJECT/HDMI_DDR/pnr/outputs/AXI4_writer.sdf, line 334943>.
+xmelab: *W,SDFNET: Unable to annotate to non-existent timing check (RECREM (posedge RN) (posedge CK) (-0.028) (0.147)) of instance tb_axi4_writer_pls.uut.\u_fifo_writer_rd_ptr_bin_reg[4]  of module DFFRX1 </home/s_2025_h007/PROJECT/HDMI_DDR/pnr/outputs/AXI4_writer.sdf, line 334964>.
+xmelab: *W,SDFNET: Unable to annotate to non-existent timing check (RECREM (posedge RN) (posedge CK) (-0.054) (0.171)) of instance tb_axi4_writer_pls.uut.\u_fifo_writer_wr_ptr_bin_reg[8]  of module DFFRX1 </home/s_2025_h007/PROJECT/HDMI_DDR/pnr/outputs/AXI4_writer.sdf, line 334985>.
+xmelab: *W,SDFNET: Unable to annotate to non-existent timing check (RECREM (posedge RN) (posedge CK) (-0.059) (0.175)) of instance tb_axi4_writer_pls.uut.\u_fifo_writer_wr_ptr_bin_reg[2]  of module DFFRX1 </home/s_2025_h007/PROJECT/HDMI_DDR/pnr/outputs/AXI4_writer.sdf, line 335006>.
+xmelab: *W,SDFNET: Unable to annotate to non-existent timing check (RECREM (posedge RN) (posedge CK) (-0.057) (0.173)) of instance tb_axi4_writer_pls.uut.\u_fifo_writer_wr_ptr_bin_reg[7]  of module DFFRX1 </home/s_2025_h007/PROJECT/HDMI_DDR/pnr/outputs/AXI4_writer.sdf, line 335027>.
+xmelab: *W,SDFNET: Unable to annotate to non-existent timing check (RECREM (posedge RN) (posedge CK) (-0.057) (0.173)) of instance tb_axi4_writer_pls.uut.\u_fifo_writer_rd_ptr_gray_sync2_reg[5]  of module DFFRX1 </home/s_2025_h007/PROJECT/HDMI_DDR/pnr/outputs/AXI4_writer.sdf, line 335048>.
+xmelab: *W,SDFNET: Unable to annotate to non-existent timing check (RECREM (posedge RN) (posedge CK) (-0.054) (0.171)) of instance tb_axi4_writer_pls.uut.\u_fifo_writer_rd_ptr_gray_sync2_reg[7]  of module DFFRX1 </home/s_2025_h007/PROJECT/HDMI_DDR/pnr/outputs/AXI4_writer.sdf, line 335069>.
+xmelab: *W,SDFNET: Unable to annotate to non-existent timing check (RECREM (posedge RN) (posedge CK) (-0.052) (0.169)) of instance tb_axi4_writer_pls.uut.\u_fifo_writer_rd_ptr_gray_sync2_reg[1]  of module DFFRX1 </home/s_2025_h007/PROJECT/HDMI_DDR/pnr/outputs/AXI4_writer.sdf, line 335090>.
+	Annotation completed with 0 Errors and 70 Warnings
+	SDF statistics: 
+		 No. of Pathdelays = 49182   	 No. of Disabled Pathdelays = 0        Annotated = 100.00% (49182/49182) 
+		 No. of Tchecks    = 17090   	 No. of Disabled Tchecks    = 0        Annotated = 99.18% (16950/17090) 
+				        Total(T) 	   Disabled(D) 	    Annotated(A)	  Percentage(A/(T-D))
+		 Path Delays	         49182	             0	             49182	                100.00
+		       $hold	            70	             0	                 0	                  0.00
+		      $width	          8510	             0	              8510	                100.00
+		   $recovery	            70	             0	                 0	                  0.00
+		  $setuphold	          8440	             0	              8440	                100.00
+	Building instance overlay tables: .................... Done
+	Generating native compiled code:
+		worklib.AXI4_writer:v <0x1bec6a05>
+			streams:   1, words:   152
+		worklib.tb_axi4_writer_pls:v <0x04d553a1>
+			streams:  15, words: 11731
+		slow_vdd1v0_basicCells.DFFRX1:v <0x2620f564>
+			streams:   0, words:     0
+		slow_vdd1v0_basicCells.DFFRX1:v <0x1523496e>
+			streams:   0, words:     0
+		slow_vdd1v0_basicCells.DFFRX2:v <0x4aa9322c>
+			streams:   0, words:     0
+		slow_vdd1v0_basicCells.DFFX1:v <0x69679473>
+			streams:   0, words:     0
+		slow_vdd1v0_basicCells.DFFRHQX4:v <0x4e34407f>
+			streams:   0, words:     0
+		slow_vdd1v0_basicCells.DFFRX1:v <0x19f800b6>
+			streams:   0, words:     0
+		slow_vdd1v0_basicCells.DFFRHQX8:v <0x442b6d35>
+			streams:   0, words:     0
+		slow_vdd1v0_basicCells.DFFQX2:v <0x332c9789>
+			streams:   0, words:     0
+		slow_vdd1v0_basicCells.DFFHQX1:v <0x7c44d3d1>
+			streams:   0, words:     0
+		slow_vdd1v0_basicCells.DFFQXL:v <0x1356e685>
+			streams:   0, words:     0
+		slow_vdd1v0_basicCells.DFFHQX1:v <0x64fb0fac>
+			streams:   0, words:     0
+		slow_vdd1v0_basicCells.DFFQXL:v <0x0be93af8>
+			streams:   0, words:     0
+		slow_vdd1v0_basicCells.DFFRHQX1:v <0x655c426d>
+			streams:   0, words:     0
+		slow_vdd1v0_basicCells.DFFRHQX1:v <0x0566d2fe>
+			streams:   0, words:     0
+		slow_vdd1v0_basicCells.DFFRHQX1:v <0x3c455cf2>
+			streams:   0, words:     0
+		slow_vdd1v0_basicCells.DFFRHQX1:v <0x5c7fcc61>
+			streams:   0, words:     0
+	Building instance specific data structures.
+	Loading native compiled code:     .................... Done
+	Design hierarchy summary:
+		                     Instances  Unique
+		Modules:                 23479     114
+		UDPs:                     8440       4
+		Primitives:              48761       5
+		Timing outputs:          23499      16
+		Registers:                4231      24
+		Scalar wires:            40209       -
+		Expanded wires:             48       2
+		Vectored wires:              1       -
+		Initial blocks:              4       4
+		Cont. assignments:           1      98
+		Pseudo assignments:         11      11
+		Timing checks:           25530    4473
+		Interconnect:            49158     198
+		Delayed tcheck signals:   8440    4472
+		Simulation timescale:      1ps
+	Writing initial simulation snapshot: worklib.tb_axi4_writer_pls:v
+xmsim: *W,NOMTDGUI: Multi-Threaded Dumping is disabled for interactive debug mode.
+
+-------------------------------------
+Relinquished control to SimVision...
+xcelium> 
+xcelium> source /tools/cadence/XCELIUM2203/tools/xcelium/files/xmsimrc
+xcelium> database -open waves -into waves.shm -default
+Created default SHM database waves
+xcelium> probe -create -shm tb_axi4_writer_pls.ADDR_OFFSET tb_axi4_writer_pls.AWADDR tb_axi4_writer_pls.AWBURST tb_axi4_writer_pls.AWCACHE tb_axi4_writer_pls.AWLEN tb_axi4_writer_pls.AWPROT tb_axi4_writer_pls.AWREADY tb_axi4_writer_pls.AWSIZE tb_axi4_writer_pls.AWVALID tb_axi4_writer_pls.BREADY tb_axi4_writer_pls.BRESP tb_axi4_writer_pls.BVALID tb_axi4_writer_pls.FRAME_BASE_ADDR tb_axi4_writer_pls.WDATA tb_axi4_writer_pls.WLAST tb_axi4_writer_pls.WREADY tb_axi4_writer_pls.WSTRB tb_axi4_writer_pls.WVALID tb_axi4_writer_pls.clk_100Mhz tb_axi4_writer_pls.frame_done tb_axi4_writer_pls.mixed_data tb_axi4_writer_pls.o_prog_full tb_axi4_writer_pls.pclk tb_axi4_writer_pls.pixel_valid tb_axi4_writer_pls.rst tb_axi4_writer_pls.state
+Created probe 1
+xcelium> run
+=== GLS Simulation Completed ===
+Simulation complete via $finish(1) at time 2235 NS + 0
+./tb_axi4_writer_pls.v:163         $finish;
+xcelium> ^C
+xcelium> TOOL:	xrun(64)	22.03-s009: Exiting on Mar 03, 2026 at 03:42:37 KST  (total: 00:13:37)
