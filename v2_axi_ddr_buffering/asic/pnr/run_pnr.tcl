@@ -157,20 +157,26 @@ verify_connectivity -type all
 # 3. Geometry - 부품이 겹치거나 경계를 벗어난 곳이 없는지 확인
 verify_geometry
 
-# ==========================================================
-# 15. GDSII
-# ==========================================================
 
-# 최종 netlist file 출력
-# 나중에 시뮬레이션이나 LVS 검증 시 원본 파일이 됨.
+# ==========================================================
+# 15. 최종 결과물 추출 (Reports, SDF, GDSII)
+# ==========================================================
+# 1. 면적 및 전력 리포트 추출
+report_area > reports/area.rpt
+report_power -out_file reports/power.rpt
+
+# 2. Post-Sim용 SDF 추출 (실제 지연 시간 파일)
+write_sdf outputs/AXI4_writer.sdf
+
+# 3. 최종 넷리스트 출력
 saveNetlist outputs/AXI4_writer_final.v
 
-# 3. GDSII 파일 출력 (chip 제조용 최종 도면)
+# 4. GDSII 파일 출력 (에러 유발 맵 파일 옵션 제거)
 streamOut outputs/AXI4_writer.gds \
           -libName DesignLib \
           -structureName AXI4_writer \
           -units 1000 \
           -mode ALL
 
-# 4. 전체 디자인 세션 저장
+# 5. 전체 디자인 세션 최종 저장
 saveDesign AXI4_writer_final.dat
