@@ -163,7 +163,7 @@ verify_geometry
 # ==========================================================
 # 1. 면적 및 전력 리포트 추출
 report_area > reports/area.rpt
-report_power -out_file reports/power.rpt
+report_power -outfile reports/power.rpt
 
 # 2. Post-Sim용 SDF 추출 (실제 지연 시간 파일)
 write_sdf outputs/AXI4_writer.sdf
