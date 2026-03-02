@@ -79,7 +79,7 @@ module tb_axi4_writer_pls;
     // ==========================================
 	$sdf_annotate(
     		"../../pnr/outputs/AXI4_writer.sdf",  // Innovus에서 방금 뽑은 SDF 파일 경로
-    		tb_axi4_writer_gls.uut,
+    		tb_axi4_writer_pls.uut,
     		,
     		"sdf_axi4_writer_postsim.log", // 로그 파일 이름도 구분되게 변경 권장
     		"MAXIMUM"
