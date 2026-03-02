@@ -75,15 +75,17 @@ module tb_axi4_writer_pls;
     );
 
     // ==========================================
-    // 3. SDF Annotation
+    // 3. SDF Annotation (Post-Sim)
     // ==========================================
-	$sdf_annotate(
-    		"../../pnr/outputs/AXI4_writer.sdf",  // Innovus에서 방금 뽑은 SDF 파일 경로
-    		tb_axi4_writer_pls.uut,
-    		,
-    		"sdf_axi4_writer_postsim.log", // 로그 파일 이름도 구분되게 변경 권장
-    		"MAXIMUM"
-	);
+    initial begin
+        $sdf_annotate(
+            "../../pnr/outputs/AXI4_writer.sdf",  // 1. SDF file path
+            tb_axi4_writer_pls.uut,               // 2. Target instance
+            "",                                   // 3. Config (Empty string is safer)
+            "sdf_axi4_writer_postsim.log",        // 4. Log file
+            "MAXIMUM"                             // 5. Worst case MTM
+        );
+    end
     
     /* sdf 파일 경로를 알려줌.
     - sdf 파일을 tb_simple_spi.u1에 적용시키는 것임 (여기서 u1은 module 이름),
