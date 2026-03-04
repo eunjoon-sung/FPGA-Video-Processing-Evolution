@@ -6,7 +6,7 @@ module Camera_configure
     )
     (
     input wire rst,       // 보드 리셋 버튼
-    input wire clk, // 보드 50MHz 클럭 핀
+    input wire clk, // clk 25Mhz from Top module
     input wire start,
     output wire sioc,
     inout wire siod,
