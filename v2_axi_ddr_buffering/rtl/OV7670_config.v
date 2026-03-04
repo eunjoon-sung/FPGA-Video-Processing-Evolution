@@ -138,7 +138,7 @@ module OV7670_config
             
             // [추가된 상태] I2C 모듈이 Start를 인식하고 Busy(Ready=0)가 될 때까지 기다림
 			// [Why?] 왜 하나의 상태에서 다 처리하지 않고 별도의 state를 두었나?
-			// State Aliasing (상태 중첩)의 위험성 :
+			// State Aliasing (상태가 중첩됨) 의 위험성 :
 			// 하나의 상태 안에서 동일한 입력 신호(ready == 0)가 "아직 준비 안 됨"과 "명령을 받고 바빠짐"이라는 두 가지 의미를 가질 때, FSM은 이를 구분할 능력이 없기 때문.
             WAIT_BUSY: begin
                 SCCB_interface_start = 1; // 확실하게 Start 유지 (모듈에 따라 필요할 수 있음)
