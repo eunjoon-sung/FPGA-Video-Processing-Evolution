@@ -30,7 +30,9 @@ module Video_timing_generator(
     wire [15:0] buff_out; // 한 픽셀
     wire [8:0] buff_addr = h_count[9:1]; // 2로 나눔 (shift right)
 
-    assign buff_out = line_buffer[buff_addr];
+    assign buff_out = line_buffer[buff_addr]; 
+    // [수정 필요] Vivado에선 어찌저찌 했지만 ASIC 칩 만들 때는 무조건 memory는 결과 출력까지 1클럭을 염두하고 코드 짜야 함.
+    //  ASIC용 SRAM 매크로는 100% 동기식. 저런 assign 구문으로 SRAM을 읽을 수 없음!
 
     reg state;
     reg next_state;
