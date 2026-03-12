@@ -12,17 +12,29 @@ This repository documents the evolution of a real-time hardware video processing
 * **Processing Pipeline:** Real-time chroma-key blending and downscaling (decimation) controlled by a deterministic FSM to minimize latency.
 * **Verification:** Applied 2-stage Flip-Flop synchronizers to prevent metastability across clock domains and utilized Vivado ILA for real-time signal timing verification.
 
-* **Critical Troubleshooting: Frequency Interference & Data-Signal Decoupling**
+#### 🛠️ Critical Troubleshooting: Frequency Interference & Data-Signal Decoupling
+
+| Frequency Interference (5-way Split) | Severe Screen Tearing & Noise |
+| :---: | :---: |
+| <img src="./assets/colorbar_5split.png" width="350"> | <img src="./assets/screen_tearing.png" width="350"> |
 
 * **Issue:** Encountered severe screen tearing and periodic noise (5-way split) even after introducing an asynchronous FIFO to handle CDC (Clock Domain Crossing).
-* **Root Cause Analysis:**
-  1. **Clock Frequency Interference:** A microscopic difference between the camera's PCLK (25.000MHz) and the FPGA system clock (25.01MHz) created periodic interference, which manifested as multiple horizontal noise bands across the frame.
-  2. **Data-Signal Decoupling (The Core Issue):** Despite using an Async FIFO, the two clock domains remained fundamentally unsynchronized and independent. Pixel data suffered variable latency as it passed through the FIFO, whereas control signals (VSYNC/HREF) bypassed the FIFO and propagated instantly. This timing mismatch completely decoupled the data path from the control path, causing a severe phase skew where the SRAM address reset triggered before the corresponding pixel data arrived.
-* **Resolution:** Implemented a **Direct Drive (Genlock)** approach by completely removing the FIFO from the data path. Unified the entire processing pipeline strictly under the camera's PCLK. By explicitly gating data valid signals with HREF, the data and control paths were physically coupled, effectively eliminating all tearing and phase skew artifacts.
 
-**Architectural Limitations (The "Why" behind Phase 2):**
-1. **Resource Constraints:** Insufficient internal FPGA memory (BRAM) prevented the implementation of a Full Frame Buffer, forcing a rigid "Streaming Processing" architecture.
-2. **Scalability Bottleneck:** The Genlock solution (tightly coupled clocks) made the system inherently inflexible. It became impossible to interface with heterogeneous systems requiring different input/output frame rates.
+* **Hypothesis (Architectural Deduction):** Without clear ILA triggers across the asynchronous boundary, an architectural hypothesis was formulated:
+  1. **Clock Frequency Interference:** The periodic 5-way split strongly implied a microscopic difference between the camera's external `PCLK` (25.000MHz) and the FPGA's internal system clock (25.01MHz) creating periodic interference, which manifested as multiple horizontal noise bands.
+  2. **Data-Signal Decoupling (Phase Skew):** Suspected that despite using an Async FIFO, the two clock domains remained fundamentally unsynchronized. Pixel data suffered variable latency as it passed through the FIFO, whereas control signals (`VSYNC`/`HREF`) bypassed the FIFO and propagated instantly. This timing mismatch completely decoupled the data path from the control path, causing a severe phase skew where the SRAM address reset triggered before the corresponding pixel data arrived.
+
+* **Action & Verification (Genlock Approach):** To empirically test this hypothesis, implemented a **Direct Drive (Genlock)** approach by completely removing the FIFO from the data path. Unified the entire processing pipeline strictly under the camera's `PCLK`. By explicitly gating data valid signals with `HREF`, the data and control paths were physically coupled.
+
+| Final Output (Tearing Resolved & Chroma-key Applied) |
+| :---: |
+| <img src="./assets/final_result.png" width="500"> |
+
+* **Result:** The immediate and complete disappearance of all 5-way splits, tearing, and phase skew artifacts definitively proved that the CDC latency and clock interference were indeed the root causes.
+
+#### 🚧 Architectural Limitations (The "Why" behind Phase 2)
+* **Resource Constraints:** Insufficient internal FPGA memory (BRAM) prevented the implementation of a Full Frame Buffer, forcing a rigid "Streaming Processing" architecture.
+* **Scalability Bottleneck:** The Genlock solution (tightly coupled clocks) made the system inherently inflexible. It became impossible to interface with heterogeneous systems requiring different input/output frame rates.
 
 ---
 
