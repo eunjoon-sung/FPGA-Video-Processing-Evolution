@@ -5,7 +5,7 @@ This repository documents the evolution of a real-time hardware video processing
 
 ---
 
-## 1. [Phase 1] BRAM-Based Streaming Architecture (Folder: `v1_bram_streaming`)
+## 1. [Phase 1](./v1_bram_streaming) BRAM-Based Streaming Architecture (Folder: `v1_bram_streaming`)
 
 **Overview & Implementation:**
 * **Capture & Control:** Custom RTL implementation of the I2C (SCCB) protocol for camera configuration. Designed a Data Capturer to extract valid pixels strictly synchronized with VSYNC/HREF signals.
@@ -26,7 +26,7 @@ This repository documents the evolution of a real-time hardware video processing
 
 ---
 
-## 2. [Phase 2] AXI4-Stream & DDR3 Frame Buffering Architecture (Folder: `v2_axi_ddr_buffering`)
+## 2. [Phase 2](./v2_axi_ddr_buffering) AXI4-Stream & DDR3 Frame Buffering Architecture (Folder: `v2_axi_ddr_buffering`)
 
 ### Module Overview
 This phase upgrades the video processing pipeline by integrating external DDR3 memory via the AMBA AXI4 interface. The architecture addresses the constraints of the previous BRAM-based streaming model by isolating the Camera Capture domain (Write) from the Display domain (Read) using asynchronous FIFOs and full-frame buffering.
@@ -73,7 +73,7 @@ The transition to a decoupled memory architecture introduced complex synchroniza
 
 ---
 
-## 4. [Phase 3] ASIC Physical Implementation & Sign-off (AXI4 Writer IP)
+## 4. [Phase 3](./v2_axi_ddr_buffering/asic) ASIC Physical Implementation & Sign-off (AXI4 Writer IP)
 
 **Overview & Motivation:**
 Following the system-level integration and logical verification in the FPGA (Vivado) environment, an ASIC Design Flow was conducted to evaluate the physical limitations of the RTL design when mapped to actual silicon. Targeting the `AXI4_writer.v` module—the most critical IP concerning memory bandwidth and timing in the pipeline—physical implementation and dynamic verification were performed using a 45nm standard cell library.
