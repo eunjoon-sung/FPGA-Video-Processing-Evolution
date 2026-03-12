@@ -12,6 +12,7 @@ This repository documents the evolution of a real-time hardware video processing
 * **Processing Pipeline:** Real-time chroma-key blending and downscaling (decimation) controlled by a deterministic FSM to minimize latency.
 * **Verification:** Applied 2-stage Flip-Flop synchronizers to prevent metastability across clock domains and utilized Vivado ILA for real-time signal timing verification.
 
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/ea07afda-6a08-4f0e-9364-f3fe2a79c93f" />
 
 #### 🛠️ Critical Troubleshooting: Frequency Interference & Data-Signal Decoupling
 
@@ -49,6 +50,7 @@ This phase upgrades the video processing pipeline by integrating external DDR3 m
 * **Write Path (Camera -> DDR):** OV7670 Capture -> Async FIFO (CDC) -> Custom AXI4 Master Writer -> Zynq HP Port -> DDR3
 * **Read Path (DDR -> HDMI):** DDR3 -> Zynq HP Port -> Custom AXI4 Master Reader -> Async FIFO -> Custom Video Timing Generator -> HDMI
 * **Image Processing:** RGB565 to RGB444 slicing, real-time Chroma-key mixing.
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/bddaae29-6218-4546-a337-8edf65fbfc7c" />
 
 ---
 
