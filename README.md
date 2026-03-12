@@ -16,7 +16,7 @@ This repository documents the evolution of a real-time hardware video processing
 
 | Frequency Interference (5-way Split) | Severe Screen Tearing & Noise |
 | :---: | :---: |
-| <img src="./assets/colorbar_5split.png" width="350"> | <img src="./assets/screen_tearing.png" width="350"> |
+| <img src="./v1_bram_streaming/assets/colorbar_5split.png" width="350"> | <img src="./v1_bram_streaming/assets/screen_tearing.png" width="350"> |
 
 * **Issue:** Encountered severe screen tearing and periodic noise (5-way split) even after introducing an asynchronous FIFO to handle CDC (Clock Domain Crossing).
 
@@ -28,7 +28,7 @@ This repository documents the evolution of a real-time hardware video processing
 
 | Final Output (Tearing Resolved & Chroma-key Applied) |
 | :---: |
-| <img src="./assets/final_result.png" width="500"> |
+| <img src="./v1_bram_streaming/assets/final_result.png" width="500"> |
 
 * **Result:** The immediate and complete disappearance of all 5-way splits, tearing, and phase skew artifacts definitively proved that the CDC latency and clock interference were indeed the root causes.
 
