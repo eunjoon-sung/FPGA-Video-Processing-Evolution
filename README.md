@@ -65,39 +65,50 @@ This phase upgrades the video processing pipeline by integrating external DDR3 m
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/bddaae29-6218-4546-a337-8edf65fbfc7c" />
 
 ---
-
 ## 3. 🛠️ Critical Troubleshooting Log
 
 The transition to a decoupled memory architecture introduced complex synchronization and data integrity challenges. Below is the engineering log detailing the root cause analysis of critical artifacts.
 
-### Issue 1: Image Scaling (1/4x), Rolling, and Ghosting Artifacts
+### Issue 1: Severe Vertical Rolling, 1/4x Scaling, and Ghosting Artifacts
 
-* **Symptom:** The output display suffered from severe distortion. The screen exhibited continuous vertical rolling, and the image appeared scaled down to 1/4 of the monitor with horizontal/vertical folding (Ghosting), where the right side of the frame wrapped around to overlay on subsequent scanlines.
+| Writer Stalled (ILA Waveform) | Root Cause of Scaling (ILA Latch) |
+| :---: | :---: |
+| <img src="./v2_axi_ddr_buffering/assets/waveform1.png" width="350"> | <img src="./v2_axi_ddr_buffering/assets/screen_folding.png" width="350"> |
+| *Writer address stalled at 80% despite `frame_done` pulse.* | *ILA revealed `pixel_valid` latch causing duplicate writes.* |
 
-* **Hypothesis 1 (Asynchronous Domain Collision):** Suspected that the continuous screen rolling was caused by forcing synchronization between two independent clock domains. Initially, the Writer's address reset was rigidly tied to the HDMI VTG's `vsync`. This caused the Writer to stall and wait for the monitor, while the Camera kept streaming, inevitably overflowing the FIFO.
-  * **Action:** Completely decoupled the Camera's `frame_done` signal from the HDMI's `vsync`. Implemented an independent Triple Buffering routing logic where the Writer operates freely and avoids the Reader's current memory space. Additionally, fine-tuned the Reader FIFO's reset timing to exactly match the HDMI Back Porch (`v_count == 523`).
-  * **Result:** The vertical screen rolling was completely resolved. However, the 1/4x scaling and ghosting artifacts persisted.
+* **Symptom:** The output display suffered from complex, multi-layered distortion. First, the screen exhibited rapid **vertical rolling** (the frame continuously sweeping top-to-bottom). Second, the discernible image was scaled down to 1/4 of the monitor with severe folding/ghosting artifacts, where the right side of the frame wrapped around to overlay on subsequent scanlines.
+* **Hypothesis 1 (Sync Mismatch & FIFO Overflow):** Suspected the vertical rolling was caused by forcing synchronization between two independent clock domains. The ILA waveform (Figure left) confirmed this: the Writer's address reset was rigidly tied to the HDMI `vsync`. The Writer stalled waiting for the display, while the camera kept streaming. This inevitably overflowed the FIFO, causing the frame's start-pointer to continuously drift.
+* **Action (Decoupling & Buffer Optimization):** Completely decoupled the Camera's `frame_done` signal from the HDMI's `vsync`. The Writer's address offset and FIFO reset were re-configured to trigger strictly on the camera's `frame_done` pulse. Additionally, implemented an independent Triple Buffering routing logic where the Writer operates freely and avoids the Reader's current memory space, and fine-tuned the Reader FIFO's reset timing to exactly match the HDMI Back Porch (`v_count == 523`).
+* **Result:** The fast vertical rolling was completely resolved. The frames stabilized, proving the decoupling was successful. However, the 1/4x scaling and horizontal folding artifacts persisted.
 
-* **Hypothesis 2 (AXI Burst Alignment & Stride Mismatch):** Suspected that the remaining ghosting boundary was related to memory address "line breaks" and AXI transaction sizes. 
-  * **Action:** Manipulated the AXI Burst Length (`AWLEN`) from 64 down to 16. 
-  * **Result (The Shifting Boundary):** A 64-bit AXI bus transfers 8 Bytes per beat. At `AWLEN` = 64, one burst equals 512 Bytes, which does not evenly divide a 640-Byte video line (320px * 2B). This caused bursts to straddle across multiple lines. However, at `AWLEN` = 16, one burst equals exactly 128 Bytes. Since 640 is perfectly divisible by 128 (exactly 5 bursts per line), the burst boundary perfectly aligned with the video line boundary. 
-  * **Conclusion:** Changing `AWLEN` to 16 caused the visual folding boundary to shift horizontally. This proved that the AXI memory mapping and burst alignments were responding correctly, but the underlying total amount of data being pushed per line was fundamentally doubled, leading the investigation to the RTL logic.
+#### 🔍 Fault Isolation & Deep Dive into Scaling
 
-* **Fault Isolation (Color Bar Test):** To strictly isolate the fault from external camera noise or AXI logic errors, bypassed the camera input and injected an internal static Color Bar test pattern. 
-  * **Result:** The output rendered perfectly straight vertical bands, definitively proving that the AXI bandwidth, the 16-burst configuration, and the downscaling logic were completely flawless. The issue was now isolated strictly to the camera data parsing module.
+| Fault Isolation (Color Bar Test) | Root Cause Verification (ILA Waveform) |
+| :---: | :---: |
+| <img src="./v2_axi_ddr_buffering/assets/colorbartest.jpg" width="400"> | <img src="./v2_axi_ddr_buffering/assets/rootcause.png" width="400"> |
+| *Color bar test revealed address offset shifts and split blanking regions.* | *ILA revealed `pixel_valid` latch causing duplicate data (`0xFFAA_xFFAA`).* |
 
+* **Fault Isolation (Color Bar Test):** To strictly isolate the remaining scaling fault from external camera noise, the camera input was bypassed, and an internal static Color Bar test pattern was injected. The test revealed that the black blanking region was split and an abnormal horizontal offset boundary was clearly visible.
+* **Hypothesis 2 (AXI Burst Alignment & Stride Mismatch):** The shifted offset during the Color Bar test strongly indicated a memory address stride mismatch or an AXI burst misalignment. Suspected that the bursts were straddling across video line boundaries.
+* **Action:** Manipulated the AXI Burst Length (`AWLEN`) from 64 down to 16.
+* **Result (The Shifting Boundary):** A 64-bit AXI bus transfers 8 Bytes per beat. At `AWLEN` = 64, one burst equals 512 Bytes, which does not evenly divide a 640-Byte video line (320px * 2B). This caused bursts to straddle across multiple lines. However, at `AWLEN` = 16, one burst equals exactly 128 Bytes. Since 640 is perfectly divisible by 128 (exactly 5 bursts per line), the burst boundary perfectly aligned with the video line boundary.
+* **Conclusion:** Changing `AWLEN` to 16 caused the visual folding boundary to shift horizontally. This proved that the AXI memory mapping and burst alignments were responding correctly, but the underlying total amount of data being pushed per line was fundamentally doubled, leading the investigation to the RTL logic.
 * **Verification (Vivado ILA):** Bypassed the AXI interconnect variables and probed the `m_axi_w_wdata` directly at the hardware level.
-  
-* **Root Cause (The Latch):** The ILA waveform revealed a critical data duplication issue (`0xFFAA_xFFAA` -> `[Pixel A][Pixel A][Pixel B][Pixel B]`). The 8-bit to 16-bit word assembly logic in the `camera_capture` module lacked an explicit `else { pixel_valid <= 0; }` condition during the odd/even byte transition. The synthesizer interpreted this ambiguity as a hardware latch, asserting the `valid` strobe for *two* clock cycles per pixel. Consequently, 1 pixel was written to the DDR twice, causing the memory address pointer to increment at 2x speed. This forced Line N's data to forcefully invade Line N+1's memory space, resulting in the 1/4x scaling and overlapping ghost artifacts.
-
+* **Root Cause (The Latch):** The ILA waveform (Figure right) revealed a critical data duplication issue (`0xFFAA_xFFAA` -> `[Pixel A][Pixel A][Pixel B][Pixel B]`). The 8-bit to 16-bit word assembly logic in the `camera_capture` module lacked an explicit `else { pixel_valid <= 0; }` condition during the odd/even byte transition. The synthesizer interpreted this ambiguity as a hardware latch, asserting the `valid` strobe for *two* clock cycles per pixel. Consequently, 1 pixel was written to the DDR twice, causing the memory address pointer to increment at 2x speed. This forced Line N's data to forcefully invade Line N+1's memory space, resulting in the 1/4x scaling and overlapping ghost artifacts.
 * **Resolution:** Implemented explicit state-machine level combinational gating (`pixel_valid <= 0;`), dismantling the unintended latch and ensuring a strict single-cycle strobe per 16-bit word. Memory mapping was instantly restored to a perfect 1:1 pixel-to-address ratio.
 
+---
 
 ### Issue 2: Chroma-key Noise and Color Distortion
+
+| Before (Color Distortion & Noise) | After (Restored AWB & Clear Chroma-key) |
+| :---: | :---: |
+| <img src="./v2_axi_ddr_buffering/assets/green_noise.png" width="350"> | <img src="./v2_axi_ddr_buffering/assets/fixed_chromakey.png" width="350"> |
+
 * **Symptom:** The green-screen background was not fully masked (clipping failed), and the camera output displayed abnormal color temperatures (excessive green tint).
 * **Root Cause 1 (Color Temperature):** The OV7670 SCCB configuration lacked the specific AWB (Auto White Balance) algorithmic control register setup. The sensor defaulted to its physical bias (Bayer pattern's 2x green pixels).
 * **Root Cause 2 (Bit Slicing Mismatch):** The logic incorrectly sliced the incoming RGB565 data as RGB444, causing the LSBs of the Green channel (noise) to bleed into the MSBs of the Blue channel.
-* **Resolution:** 1. Updated SCCB ROM to assert register `0x6F` (`16'h6F_9F`) to enable Simple AWB control.
+* **Resolution:** 1. Updated SCCB ROM to assert register `0x6F` (`16'h6F_9F`) to enable Simple AWB control. 
   2. Corrected hardware bit-slicing logic: `R = {rgb_data[15:11], 3'b000}; G = {rgb_data[10:5], 2'b00}; B = {rgb_data[4:0], 3'b000};`
 
 ---
