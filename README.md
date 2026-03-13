@@ -71,10 +71,10 @@ The transition to a decoupled memory architecture introduced complex synchroniza
 
 ### Issue 1: Severe Vertical Rolling, 1/4x Scaling, and Ghosting Artifacts
 
-| Writer Stalled (ILA Waveform) | Root Cause of Scaling (ILA Latch) |
+| Writer Stalled (ILA Waveform) | Symptom: 1/4 Scaling & Folding |
 | :---: | :---: |
 | <img src="./v2_axi_ddr_buffering/assets/waveform1.png" width="350"> | <img src="./v2_axi_ddr_buffering/assets/screen_folding.png" width="350"> |
-| *Writer address stalled at 80% despite `frame_done` pulse.* | *ILA revealed `pixel_valid` latch causing duplicate writes.* |
+| *Writer address stalled at 80% despite `frame_done` pulse.* | *Monitor output showing 1/4x scaled image with vertical folding.* |
 
 * **Symptom:** The output display suffered from complex, multi-layered distortion. First, the screen exhibited rapid **vertical rolling** (the frame continuously sweeping top-to-bottom). Second, the discernible image was scaled down to 1/4 of the monitor with severe folding/ghosting artifacts, where the right side of the frame wrapped around to overlay on subsequent scanlines.
 * **Hypothesis 1 (Sync Mismatch & FIFO Overflow):** Suspected the vertical rolling was caused by forcing synchronization between two independent clock domains. The ILA waveform (Figure left) confirmed this: the Writer's address reset was rigidly tied to the HDMI `vsync`. The Writer stalled waiting for the display, while the camera kept streaming. This inevitably overflowed the FIFO, causing the frame's start-pointer to continuously drift.
@@ -85,7 +85,7 @@ The transition to a decoupled memory architecture introduced complex synchroniza
 
 | Fault Isolation (Color Bar Test) | Root Cause Verification (ILA Waveform) |
 | :---: | :---: |
-| <img src="./v2_axi_ddr_buffering/assets/colorbartest.jpg" width="400"> | <img src="./v2_axi_ddr_buffering/assets/rootcause.png" width="400"> |
+| <img src="./v2_axi_ddr_buffering/assets/colorbartest.png" width="400"> | <img src="./v2_axi_ddr_buffering/assets/rootcause.png" width="400"> |
 | *Color bar test revealed address offset shifts and split blanking regions.* | *ILA revealed `pixel_valid` latch causing duplicate data (`0xFFAA_xFFAA`).* |
 
 * **Fault Isolation (Color Bar Test):** To strictly isolate the remaining scaling fault from external camera noise, the camera input was bypassed, and an internal static Color Bar test pattern was injected. The test revealed that the black blanking region was split and an abnormal horizontal offset boundary was clearly visible.
