@@ -34,7 +34,7 @@ This repository documents the evolution of a real-time hardware video processing
   2. **Data-Signal Decoupling (Phase Skew):** Suspected that despite using an Async FIFO, the two clock domains remained fundamentally unsynchronized. Pixel data suffered variable latency as it passed through the FIFO, whereas control signals (`VSYNC`/`HREF`) bypassed the FIFO and propagated instantly. This timing mismatch completely decoupled the data path from the control path, causing a severe phase skew where the SRAM address reset triggered before the corresponding pixel data arrived.
 
 
-* **Action & Verification (Write-Path Genlock & Module Consolidation):** To empirically test this hypothesis, the architecture was drastically refactored. 
+* **Action & Verification (Source-Synchronous Write-Path & Module Consolidation):** To empirically test this hypothesis, the architecture was drastically refactored. 
 
 <div align="center">
   <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/47e02775-964e-49d5-88db-06c9cf25d99c" />
@@ -52,8 +52,9 @@ This repository documents the evolution of a real-time hardware video processing
 * **Result:** The immediate and complete disappearance of all 5-way splits, tearing, and phase skew artifacts definitively proved that the CDC latency and clock interference were indeed the root causes.
 
 #### 🚧 Architectural Limitations (The "Why" behind Phase 2)
-* **Resource Constraints:** Insufficient internal FPGA memory (BRAM) prevented the implementation of a Full Frame Buffer, forcing a rigid "Streaming Processing" architecture.
-* **Scalability Bottleneck:** The Genlock solution (tightly coupled clocks) made the system inherently inflexible. It became impossible to interface with heterogeneous systems requiring different input/output frame rates.
+* **Resource Constraints (The BRAM Limit):** Insufficient internal FPGA memory (BRAM) prevented the implementation of a Full Frame Buffer, forcing a rigid, line-by-line "Streaming Processing" architecture.
+* **Scalability Bottleneck (The PCLK Trap):** While unifying the write-path under the camera's native `PCLK` (Source-Synchronous design) bypassed the immediate Clock Domain Crossing (CDC) instability, it made the system inherently inflexible. The processing logic became bottlenecked by the external sensor's relatively slow clock speed.
+* **The Necessity of Asynchronous Decoupling:** As systems scale, interfacing with high-speed heterogeneous domains (such as AMBA AXI4 interconnects or ARM processors) makes proper CDC utilizing Asynchronous FIFOs unavoidable. To safely manage unpredictable data throughput and asynchronous rate mismatches without data loss, the architecture must fundamentally evolve from a tightly coupled streaming model to a fully decoupled, external memory-backed Frame Buffer model (Phase 2).
 
 ---
 
