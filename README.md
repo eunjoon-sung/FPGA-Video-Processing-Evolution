@@ -73,14 +73,14 @@ This phase upgrades the video processing pipeline by integrating external DDR3 m
 
 The transition to a decoupled memory architecture introduced complex synchronization and data integrity challenges. Below is the engineering log detailing the root cause analysis of critical artifacts.
 
-### Issue 1: Severe Vertical Rolling, 1/4x Scaling, and Ghosting Artifacts
+### Issue 1: Severe Vertical Rolling, 4x Zoom-in & Folding, and Ghosting Artifacts
 
 | Writer Stalled (ILA Waveform) | Symptom: 1/4 Scaling & Folding |
 | :---: | :---: |
 | <img src="./v2_axi_ddr_buffering/assets/waveform1.png" width="350"> | <img src="./v2_axi_ddr_buffering/assets/screen_folding.png" width="350"> |
 | *Writer address stalled at 80% despite `frame_done` pulse.* | *Monitor output showing 1/4x scaled image with vertical folding.* |
 
-* **Symptom:** The output display suffered from complex, multi-layered distortion. First, the screen exhibited rapid **vertical rolling** (the frame continuously sweeping top-to-bottom). Second, the discernible image was scaled down to 1/4 of the monitor with severe folding/ghosting artifacts, where the right side of the frame wrapped around to overlay on subsequent scanlines.
+* **Symptom:** The output display suffered from complex, multi-layered distortion. First, the screen exhibited rapid **vertical rolling** (the frame continuously sweeping top-to-bottom). Second, the discernible image appeared severely stretched and zoomed-in, with only 1/4 of the original frame filling the entire monitor, accompanied by severe folding/ghosting artifacts, where the right side of the frame wrapped around to overlay on subsequent scanlines.
 * **Hypothesis 1 (Asynchronous Deadlock & FIFO Overflow):** Suspected the vertical rolling was caused by an architectural flaw in the initial Double Buffer swap logic. The ILA waveform (Figure left) confirmed this: initially, the buffer toggle (`buf_select`) rigidly forced synchronization by waiting for *both* the Camera's write completion (`frame_done`) and the HDMI's Vertical Blanking (`vsync_pulse`). However, because the Camera and Display are entirely independent asynchronous systems with different frame rates, this mutual dependency caused a deadlock. The Writer stalled waiting for the slower Display's `vsync`, while the Camera continuously streamed pixels. This inevitably overflowed the Async FIFO, causing the frame's start-pointer to continuously drift.
 * **Action (Decoupling to Free-Running Architecture):** Completely decoupled the Camera's control path from the HDMI's control path. The Writer's address offset and FIFO reset were re-configured to trigger *strictly and immediately* on the camera's `frame_done` pulse, completely ignoring the HDMI monitor's state. Additionally, implemented an independent Triple Buffering routing logic where the Writer operates freely and avoids the Reader's current memory space. The Reader's synchronization was properly maintained to trigger at the exact start of the HDMI Vertical Sync pulse (`v_count == 490` and `h_count == 0`).
 * **Result:** The fast vertical rolling was completely resolved. The frames stabilized, proving the decoupling was successful. However, the 1/4x scaling and horizontal folding artifacts persisted.
