@@ -116,7 +116,8 @@ module top_OV7670_system(
         .fifo_empty(w_fifo_empty),
         .fifo_rd_en(w_fifo_rd_en),
         .scaled_data(w_scaled_data),
-        .scaled_valid(w_scaled_valid)
+        .scaled_valid(w_scaled_valid),
+        .href_in(ov7670_href)
     );
     
     // (D) SRAM Writer
